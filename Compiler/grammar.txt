@@ -1,0 +1,165 @@
+// Code in File 
+	Start State is MCODE
+
+	MCODE -> FUNC FUNC'
+	
+
+// Code 
+
+	CODE -> INIT CODE | DISPLAY CODE | DISPLAYLINE CODE | IF CODE | ASSIGN CODE | FOR CODE | RETURN CODE | INPUT CODE | EXECUTE CODE | ^
+
+
+
+// Initialization 
+
+	INIT -> VAR : DTYPE X ;
+	X -> = VAL | ^;
+	VAL -> = EXP|EXECUTE
+
+
+
+// Display, DisplayLine
+
+	DISPLAY -> display : PST
+	PST -> string | EXP | PST'
+    	PST' -> PST , PST' | ^
+	
+	DISPLAYLINE -> displayline : PST
+	PST -> string | EXP | PST'
+    	PST' -> PST , PST' | ^
+
+
+
+// If, Else if, Else condition
+
+	IF ->   if ( condition ) then 
+	      	{ CODE } 
+		    Next
+	
+	ELSEIF -> 	else if ( condition ) then 
+	      	    { CODE } 
+		        Next
+
+	ELSE -> else  { CODE }  | ^	
+	
+	Next -> ELSE | ELSEIF
+
+
+
+// Assignment 
+
+	Assign -> VAR = VAL;
+	VAL -> = EXP|EXECUTE
+
+
+// EXECUTE
+
+	EXECUTE -> execute: ID ( CPARAMS )
+
+	
+// Call Parameters
+    CPARAMS -> CPARAMS' | ^    
+    CPARAMS' -> Z | CPARAMS" Z | ^
+    Z-> , CPARAMS" CPARAMS' | ^
+    CPARAMS" -> VAR
+	
+
+
+
+// For loop 
+
+	FOR ->  do until ( CONDITION ) { CODE }
+
+
+
+// Function 	
+    FUNC -> ID: DTYPE <- function ( FPARAM ) { CODE }
+
+	FUNC'-> FUNC FUNC'|^
+	
+
+
+// Function Parameters
+    FPARAM -> Y | FPARAM' Y | ^
+    Y-> ,FPARAM' FPARAM | ^
+    FPARAM' -> VAR : DTYPE
+
+
+
+// Return 
+
+	RETURN -> return: EXP ;
+
+
+
+// Input 
+
+	INPUT -> STRING : read : VAR ;
+
+
+
+// Condition 
+
+	CONDITION-> EXP RO EXP
+	RO -> -eq |-lt |-le |-gt |-ge |-ne
+
+
+
+// Expression 
+
+	EXP -> T  R
+	R -> + T R |-  T R |^
+	T -> F R'
+	R' -> * F | / F| %  F |^
+	F -> VAR | NUMBER | ( EXP )
+
+
+
+// Strings 
+
+	STRING -> " STR " | ' STR '
+	STR -> STR' STR
+	STR' -> CHARACTER | DIGIT | SPEACIAL
+
+
+
+//Special Characters
+	SPEACIAL -> !|@|#|...Any Character Other than Alphabets & Digits 
+
+
+
+//Variable
+	VAR -> $ ID : Dtype
+	
+	
+
+// Identifiier 
+
+	ID ->  _ ID' | CHARCTER ID'
+	ID' -> ID" ID' | ^
+	ID" -> CHARACTER
+	
+
+
+// Number
+
+    NUMBER -> DIGIT | NUMBER'
+    NUMBER' -> DIGIT NUMBER' | ^
+
+
+
+// Digits 
+
+	DIGIT -> 0|1|2|3|4|5|6|7|8|9
+
+
+
+// Characters 
+
+	CHARACTER -> a|A|...|z|Z
+
+
+
+// Data Type
+
+	DTYPE -> int

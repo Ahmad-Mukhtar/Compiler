@@ -1,0 +1,8 @@
+{'n', 'VARIABLE'}
+{'c', 'VARIABLE'}
+{'x', 'VARIABLE'}
+{'y', 'VARIABLE'}
+{'z', 'VARIABLE'}
+{'i', 'VARIABLE'}
+{'num', 'VARIABLE'}
+{'result', 'VARIABLE'}
